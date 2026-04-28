@@ -21,15 +21,15 @@ const App: React.FC = () => {
     <>
       <CustomCursor />
       <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <ImageZoom />
-      <Skills />
-      <Formation />
-      <Interests />
-      <Contact />
-      <Footer />
+          <Hero />
+          <About />
+          <Experience />
+          <ImageZoom />
+          <Skills />
+          <Formation />
+          <Interests />
+          <Contact />
+          <Footer />
     </>
   );
 };
