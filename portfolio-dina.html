@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dina Fitiavana — HR Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0d0b;
+    --bg2: #111110;
+    --bg3: #181815;
+    --cream: #f0ebe0;
+    --gold: #c9a96e;
+    --gold2: #e8c99a;
+    --muted: #6b6b60;
+    --text: #e8e3d8;
+    --accent: #c9a96e;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    mix-blend-mode: normal;
+    background: linear-gradient(to bottom, rgba(13,13,11,0.95) 0%, transparent 100%);
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--cream); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 3rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 30%, #2a2215 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 10% 80%, #1a1810 0%, transparent 60%);
+  }
+  .hero-noise {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+  }
+
+  .hero-tag {
+    position: absolute; top: 8rem; right: 3rem;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    animation: fadeIn 1.5s ease 0.5s both;
+  }
+
+  .hero-initials {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(8rem, 20vw, 22rem);
+    line-height: 0.85;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201, 169, 110, 0.15);
+    position: absolute; right: -2rem; top: 50%; transform: translateY(-55%);
+    pointer-events: none;
+    user-select: none;
+    animation: fadeIn 2s ease both;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-label {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    animation: slideUp 1s ease 0.2s both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 9vw, 9rem);
+    font-weight: 900;
+    line-height: 0.9;
+    color: var(--cream);
+    animation: slideUp 1s ease 0.3s both;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    margin-top: 2rem;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 500px;
+    line-height: 1.6;
+    animation: slideUp 1s ease 0.45s both;
+  }
+
+  .hero-meta {
+    margin-top: 3rem;
+    display: flex; gap: 3rem; align-items: flex-start;
+    animation: slideUp 1s ease 0.6s both;
+  }
+  .hero-meta-item { }
+  .hero-meta-label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+  .hero-meta-value {
+    font-size: 0.85rem; color: var(--cream);
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted);
+    animation: fadeIn 2s ease 1.5s both;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* SECTION BASE */
+  section { padding: 8rem 3rem; }
+  .section-num {
+    font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ABOUT */
+  .about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    margin-top: 5rem;
+  }
+  .about-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.4;
+    color: var(--cream);
+    border-left: 2px solid var(--gold);
+    padding-left: 2rem;
+    font-style: italic;
+  }
+  .about-text { color: var(--muted); font-size: 1rem; line-height: 1.9; font-weight: 300; }
+  .about-text p + p { margin-top: 1.5rem; }
+
+  .about-pills {
+    margin-top: 3rem;
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+  }
+  .pill {
+    border: 1px solid rgba(201,169,110,0.3);
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold2);
+    text-transform: uppercase;
+  }
+
+  /* EXPERIENCE */
+  .experience { background: var(--bg); }
+  .exp-list { margin-top: 5rem; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+    position: relative;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute; left: -3rem; right: -3rem; top: 0; bottom: 0;
+    background: rgba(201,169,110,0.02);
+    opacity: 0; transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .exp-item:hover::before { opacity: 1; }
+
+  .exp-date { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.4rem; }
+  .exp-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.6rem;
+  }
+  .exp-role {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+  .exp-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .exp-desc li { list-style: none; padding-left: 1rem; position: relative; margin-bottom: 0.3rem; }
+  .exp-desc li::before { content: '—'; position: absolute; left: -0.5rem; color: var(--gold); opacity: 0.5; }
+
+  /* SKILLS */
+  .skills { background: var(--bg3); }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 5rem;
+  }
+  .skill-card {
+    background: var(--bg2);
+    padding: 3rem 2.5rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .skill-card:hover { transform: translateY(-4px); }
+  .skill-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .skill-card:hover::after { transform: scaleX(1); }
+  .skill-card-num {
+    font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .skill-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--cream); margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    font-size: 0.7rem; color: var(--muted);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 0.25rem 0.75rem; border-radius: 4px;
+  }
+
+  /* FORMATION */
+  .formation { background: var(--bg); }
+  .formation-list { margin-top: 5rem; }
+  .form-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 3rem; padding: 2.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .form-year { font-size: 0.75rem; color: var(--muted); padding-top: 0.3rem; }
+  .form-degree {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.4rem;
+  }
+  .form-school { font-size: 0.85rem; color: var(--gold2); margin-bottom: 0.4rem; letter-spacing: 0.05em; }
+  .form-note { font-size: 0.8rem; color: var(--muted); font-style: italic; }
+
+  /* INTERESTS */
+  .interests {
+    background: var(--bg2);
+    padding: 6rem 3rem;
+  }
+  .interests-marquee-wrap { overflow: hidden; margin-top: 4rem; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 2rem 0; }
+  .interests-marquee {
+    display: flex; gap: 4rem; width: max-content;
+    animation: marquee 18s linear infinite;
+  }
+  .interest-item {
+    display: flex; align-items: center; gap: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; font-style: italic;
+    color: transparent; -webkit-text-stroke: 1px rgba(201,169,110,0.4);
+    white-space: nowrap;
+    transition: -webkit-text-stroke 0.3s, color 0.3s;
+  }
+  .interest-item:hover { color: var(--gold); -webkit-text-stroke: 1px transparent; }
+  .interest-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; opacity: 0.4; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--bg);
+    min-height: 60vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .contact-bg-text {
+    position: absolute; bottom: -2rem; right: -1rem;
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: clamp(6rem, 18vw, 18rem);
+    color: transparent; -webkit-text-stroke: 1px rgba(201,169,110,0.05);
+    pointer-events: none; user-select: none; line-height: 1;
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end;
+    position: relative; z-index: 2;
+  }
+  .contact-email {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: var(--cream);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,169,110,0.3);
+    padding-bottom: 1rem;
+    display: inline-block;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .contact-email:hover { color: var(--gold); border-color: var(--gold); }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--cream); }
+  .contact-link-arrow { font-size: 1rem; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2);
+    padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+  footer span { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+
+  /* ANIMATIONS */
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.5); opacity: 0.3; }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* INTERSECTION OBSERVER REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .exp-item, .form-item { grid-template-columns: 1fr; gap: 1rem; }
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-initials { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-name">Dina Fitiavana</span>
+  <div class="nav-links">
+    <a href="#about">À propos</a>
+    <a href="#experience">Expérience</a>
+    <a href="#skills">Compétences</a>
+    <a href="#formation">Formation</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-initials">FB</div>
+  <div class="hero-tag">HR Consultant · Madagascar</div>
+
+  <div class="hero-content">
+    <p class="hero-label">Portfolio — 2024</p>
+    <h1 class="hero-name">
+      Faneva<br/>
+      <em>Dina</em><br/>
+      Fitiavana
+    </h1>
+    <p class="hero-subtitle">
+      Une réelle passion pour les relations humaines et une curiosité incessante sur la manière de donner de l'importance à chaque personne.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Poste actuel</p>
+        <p class="hero-meta-value">HR Consultant</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Entreprise</p>
+        <p class="hero-meta-value">FTHM Consulting</p>
+      </div>
+      <div class="hero-meta-item">
+        <p class="hero-meta-label">Localisation</p>
+        <p class="hero-meta-value">Antananarivo, Madagascar</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Défiler</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="section-num reveal">01 — À propos</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    Donner de<br/><em>l'importance</em><br/>à chaque personne
+  </h2>
+  <div class="about-grid">
+    <div class="reveal reveal-delay-2">
+      <blockquote class="about-quote">
+        "L'on est plus sociable et d'un meilleur commerce par le cœur que par l'esprit."
+      </blockquote>
+      <div class="about-pills" style="margin-top: 2rem;">
+        <span class="pill">Sociable</span>
+        <span class="pill">Responsable</span>
+        <span class="pill">Leader</span>
+        <span class="pill">DELF 86/100</span>
+        <span class="pill">Master II — Mention Bien</span>
+      </div>
+    </div>
+    <div class="about-text reveal reveal-delay-3">
+      <p>
+        Diplômée en Gestion — Management et Administration d'Entreprise de l'Université Catholique de Madagascar (Master II, Vice-major de promotion), je me suis spécialisée dans les ressources humaines avec une passion profonde pour le recrutement et le développement des talents.
+      </p>
+      <p>
+        Mon parcours m'a menée du terrain associatif — chef d'équipe des Éclaireuses, responsable RH d'un groupe artistique — jusqu'aux environnements corporate exigeants, en passant par plusieurs années d'expérience chez Vivetic Group et aujourd'hui FTHM Consulting.
+      </p>
+      <p>
+        Je crois fermement que chaque individu mérite une attention singulière, et c'est ce fil conducteur qui guide chacune de mes missions de recrutement et d'accompagnement.
+      </p>
+      <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--gold2); letter-spacing: 0.08em;">
+        📍 Lot II F 3RL, Antsahameva Andraisoro, Madagascar &nbsp;·&nbsp; 📞 034 39 616 81
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <p class="section-num reveal">02 — Expérience</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    Parcours<br/><em>professionnel</em>
+  </h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Sept. 2024 — Présent</div>
+      <div>
+        <p class="exp-company">FTHM Consulting · Antsahavola, Antananarivo</p>
+        <h3 class="exp-role">HR Consultant</h3>
+        <ul class="exp-desc">
+          <li>Réalisation de missions de recrutement pour des clients multi-secteurs</li>
+          <li>Analyse des besoins et conception des outils de recrutement adéquats</li>
+          <li>Participation aux réunions de démarrage et restitution avec les clients</li>
+          <li>Rédaction des livrables et élaboration des outils de suivi RH</li>
+          <li>Rédaction des offres techniques et financières (secteur privé et public)</li>
+          <li>Veille au respect des normes internationales de qualité</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Mai — Sept. 2024</div>
+      <div>
+        <p class="exp-company">Vivetic Group · Andohatapenaka</p>
+        <h3 class="exp-role">Chargée de Recrutement</h3>
+        <ul class="exp-desc">
+          <li>Préparation des recrutements hebdomadaires (annonces réseaux sociaux)</li>
+          <li>Analyse des besoins des départements demandeurs</li>
+          <li>Conduite des entretiens de présélection téléphoniques et en présentiel</li>
+          <li>Accueil et intégration des nouveaux salariés</li>
+          <li>Compte rendu des réunions hebdomadaires</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Jan. — Mai 2024</div>
+      <div>
+        <p class="exp-company">Vivetic Group · Andohatapenaka</p>
+        <h3 class="exp-role">Assistante Recrutement — CDD</h3>
+        <ul class="exp-desc">
+          <li>Triage des CVs et gestion des candidatures</li>
+          <li>Conduite des entretiens</li>
+          <li>Suivi des contrats et dossiers candidats</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Août — Nov. 2022</div>
+      <div>
+        <p class="exp-company">Vivetic Group · Stages</p>
+        <h3 class="exp-role">Chargée de Recrutement & RH Administrative</h3>
+        <ul class="exp-desc">
+          <li>Acquisition de talents : détection de candidats, contact et évaluation des motivations</li>
+          <li>Édition de lettres administratives (attestations, contrats de travail, …)</li>
+          <li>Classement des dossiers du personnel pour un suivi efficace</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">Depuis Jan. 2022</div>
+      <div>
+        <p class="exp-company">Groupe Artistique TaMMA · Associatif</p>
+        <h3 class="exp-role">Chargée des Ressources Humaines</h3>
+        <ul class="exp-desc">
+          <li>Développement de la cohésion et de la motivation des membres</li>
+          <li>Instauration d'une ambiance conviviale favorisant la collaboration</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-date">2017 — 2021</div>
+      <div>
+        <p class="exp-company">Mpanazava Eto Madagasikara · Associatif</p>
+        <h3 class="exp-role">Chef d'équipe des Éclaireuses</h3>
+        <ul class="exp-desc">
+          <li>Leadership d'équipe : développement des compétences techniques et de la créativité</li>
+          <li>Rôle de mentor et de coordinatrice pour les membres</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <p class="section-num reveal">03 — Compétences</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    Expertise &<br/><em>Outils</em>
+  </h2>
+
+  <div class="skills-grid" style="margin-top: 5rem;">
+    <div class="skill-card reveal">
+      <p class="skill-card-num">01</p>
+      <h3 class="skill-card-title">Ressources Humaines</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Recrutement</span>
+        <span class="skill-tag">Talent Acquisition</span>
+        <span class="skill-tag">Onboarding</span>
+        <span class="skill-tag">Entretiens</span>
+        <span class="skill-tag">Suivi RH</span>
+        <span class="skill-tag">Offres de prestation</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <p class="skill-card-num">02</p>
+      <h3 class="skill-card-title">Langues</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Français (DELF 86/100)</span>
+        <span class="skill-tag">Malgache</span>
+        <span class="skill-tag">Anglais</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <p class="skill-card-num">03</p>
+      <h3 class="skill-card-title">Logiciels</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">MS Office</span>
+        <span class="skill-tag">MS Project</span>
+        <span class="skill-tag">SPSS</span>
+        <span class="skill-tag">Sphinx</span>
+        <span class="skill-tag">KoboToolbox</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">Vista Create</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <p class="skill-card-num">04</p>
+      <h3 class="skill-card-title">Management</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Leadership</span>
+        <span class="skill-tag">Gestion d'équipe</span>
+        <span class="skill-tag">Communication non-violente</span>
+        <span class="skill-tag">Gestion du temps</span>
+        <span class="skill-tag">Gestion du stress</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-1">
+      <p class="skill-card-num">05</p>
+      <h3 class="skill-card-title">Analyse & Data</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Analyse des données</span>
+        <span class="skill-tag">Traitement statistique</span>
+        <span class="skill-tag">Collecte de données</span>
+        <span class="skill-tag">Reporting</span>
+      </div>
+    </div>
+    <div class="skill-card reveal reveal-delay-2">
+      <p class="skill-card-num">06</p>
+      <h3 class="skill-card-title">Soft Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">Assertivité</span>
+        <span class="skill-tag">Empathie</span>
+        <span class="skill-tag">Prise de parole publique</span>
+        <span class="skill-tag">Plaidoirie</span>
+        <span class="skill-tag">Organisation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATION -->
+<section class="formation" id="formation">
+  <p class="section-num reveal">04 — Formation</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    Parcours<br/><em>académique</em>
+  </h2>
+
+  <div class="formation-list">
+    <div class="form-item reveal">
+      <div class="form-year">2018 — 2023</div>
+      <div>
+        <h3 class="form-degree">Master II — Gestion, Management & Administration d'Entreprise</h3>
+        <p class="form-school">Université Catholique de Madagascar · Antananarivo</p>
+        <p class="form-note">Mention Bien · Vice-major de promotion</p>
+      </div>
+    </div>
+    <div class="form-item reveal">
+      <div class="form-year">2021 — 2022</div>
+      <div>
+        <h3 class="form-degree">Formation en Langues Françaises</h3>
+        <p class="form-school">Alliance Française Andavamamba · Antananarivo</p>
+        <p class="form-note">Certification nationale et internationale · DELF 86/100</p>
+      </div>
+    </div>
+    <div class="form-item reveal">
+      <div class="form-year">2015 — 2018</div>
+      <div>
+        <h3 class="form-degree">BACC Littéraire — Série A2</h3>
+        <p class="form-school">Collège Saint Michel Amparibe · Antananarivo</p>
+        <p class="form-note">Mention Bien</p>
+      </div>
+    </div>
+    <div class="form-item reveal" style="border-bottom: 1px solid rgba(255,255,255,0.06);">
+      <div class="form-year">Fév. 2024</div>
+      <div>
+        <h3 class="form-degree">Formations Professionnelles</h3>
+        <p class="form-school">Agile Conseils · Antananarivo</p>
+        <p class="form-note">Efficacité organisationnelle · Techniques de recrutement · Affirmation de soi & assertivité</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section class="interests" id="interests">
+  <p class="section-num reveal">05 — Centres d'intérêt</p>
+  <h2 class="section-title reveal reveal-delay-1">
+    Ce qui<br/><em>m'inspire</em>
+  </h2>
+  <div class="interests-marquee-wrap">
+    <div class="interests-marquee">
+      <span class="interest-item"><span class="interest-dot"></span>Sport</span>
+      <span class="interest-item"><span class="interest-dot"></span>Voyage</span>
+      <span class="interest-item"><span class="interest-dot"></span>Chant</span>
+      <span class="interest-item"><span class="interest-dot"></span>Lecture</span>
+      <span class="interest-item"><span class="interest-dot"></span>Leadership</span>
+      <span class="interest-item"><span class="interest-dot"></span>Développement personnel</span>
+      <span class="interest-item"><span class="interest-dot"></span>Sport</span>
+      <span class="interest-item"><span class="interest-dot"></span>Voyage</span>
+      <span class="interest-item"><span class="interest-dot"></span>Chant</span>
+      <span class="interest-item"><span class="interest-dot"></span>Lecture</span>
+      <span class="interest-item"><span class="interest-dot"></span>Leadership</span>
+      <span class="interest-item"><span class="interest-dot"></span>Développement personnel</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-bg-text">Contact</div>
+  <p class="section-num reveal" style="position:relative;z-index:2;">06 — Contact</p>
+  <h2 class="section-title reveal reveal-delay-1" style="position:relative;z-index:2; margin-bottom: 4rem;">
+    Travaillons<br/><em>ensemble</em>
+  </h2>
+  <div class="contact-grid">
+    <div class="reveal">
+      <p style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;">Email</p>
+      <a href="mailto:dinafitiavana14@gmail.com" class="contact-email">
+        dinafitiavana14@gmail.com
+      </a>
+      <p style="margin-top: 2rem; font-size: 0.85rem; color: var(--muted); line-height: 1.8;">
+        Disponible pour des missions de conseil RH, recrutement<br/>
+        et accompagnement en gestion des ressources humaines.<br/>
+        <span style="color: var(--gold2);">📞 034 39 616 81</span>
+      </p>
+    </div>
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="#" class="contact-link">
+        <span>LinkedIn</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+      <a href="#" class="contact-link">
+        <span>@Dina Fitiavana</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+      <a href="mailto:dinafitiavana14@gmail.com" class="contact-link">
+        <span>Email direct</span>
+        <span class="contact-link-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2024 Faneva Dina Fitiavana Botosoanirina</span>
+  <span>HR Consultant · Antananarivo, Madagascar</span>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
