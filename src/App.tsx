@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
+import ImageZoom from './components/ImageZoom';
 import Skills from './components/Skills';
 import Formation from './components/Formation';
 import Interests from './components/Interests';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
       <Hero />
       <About />
       <Experience />
+      <ImageZoom />
       <Skills />
       <Formation />
       <Interests />

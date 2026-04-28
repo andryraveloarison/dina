@@ -5,12 +5,11 @@ const Hero: React.FC = () => {
         <section className="hero" id="home">
             <div className="hero-bg"></div>
             <div className="hero-noise"></div>
-            <div className="hero-initials">FB</div>
+            <div className="hero-initials">DF</div>
             <div className="hero-tag">HR Consultant · Madagascar</div>
 
             <div className="hero-content">
                 <h1 className="hero-name">
-                    Faneva<br />
                     <em>Dina</em><br />
                     Fitiavana
                 </h1>
