@@ -18,7 +18,6 @@ const Navbar: React.FC = () => {
 
     return (
         <nav className={scrolled ? 'nav-visible' : ''}>
-            <span className="nav-name">Dina Fitiavana</span>
             <div className="nav-links">
                 <a href="#about">À propos</a>
                 <a href="#experience">Expérience</a>
