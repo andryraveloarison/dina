@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './Preloader.css'
 
 interface PreloaderProps {
     onLoadingComplete: () => void;
@@ -12,13 +13,14 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
 
     const images = [
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
+        'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1000',
     ];
 
     useEffect(() => {
+
 
         document.body.style.overflow = 'hidden';
         const progressInterval = setInterval(() => {

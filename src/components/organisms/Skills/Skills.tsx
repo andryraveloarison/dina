@@ -1,4 +1,5 @@
 import React from 'react';
+import './Skills.css';
 
 const Skills: React.FC = () => {
     const skillsData = [
@@ -12,13 +13,13 @@ const Skills: React.FC = () => {
             num: '02',
             title: 'Langues',
             tags: ['Français (DELF 86/100)', 'Malgache', 'Anglais'],
-            delay: 'reveal-delay-1',
+            delay: 'revealDelay1',
         },
         {
             num: '03',
             title: 'Logiciels',
             tags: ['MS Office', 'MS Project', 'SPSS', 'Sphinx', 'KoboToolbox', 'Canva', 'Vista Create'],
-            delay: 'reveal-delay-2',
+            delay: 'revealDelay2',
         },
         {
             num: '04',
@@ -30,13 +31,13 @@ const Skills: React.FC = () => {
             num: '05',
             title: 'Analyse & Data',
             tags: ['Analyse des données', 'Traitement statistique', 'Collecte de données', 'Reporting'],
-            delay: 'reveal-delay-1',
+            delay: 'revealDelay1',
         },
         {
             num: '06',
             title: 'Soft Skills',
             tags: ['Assertivité', 'Empathie', 'Prise de parole publique', 'Plaidoirie', 'Organisation'],
-            delay: 'reveal-delay-2',
+            delay: 'revealDelay2',
         },
     ];
 
@@ -50,8 +51,8 @@ const Skills: React.FC = () => {
             <div className="skills-grid" style={{ marginTop: '5rem' }}>
                 {skillsData.map((skill, index) => (
                     <div key={index} className={`skill-card reveal ${skill.delay}`}>
-                        <p className="skill-card-num">{skill.num}</p>
-                        <h3 className="skill-card-title">{skill.title}</h3>
+                        <p className="skill-num">{skill.num}</p>
+                        <h3 className="skill-title">{skill.title}</h3>
                         <div className="skill-tags">
                             {skill.tags.map((tag, i) => (
                                 <span key={i} className="skill-tag">{tag}</span>

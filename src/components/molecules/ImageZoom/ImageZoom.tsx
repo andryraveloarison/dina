@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './ImageZoom.css';
 
 const ImageZoom: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);

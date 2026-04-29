@@ -1,0 +1,58 @@
+/* INTERESTS */
+.interests {
+    background: var(--bg3);
+}
+
+.interests-marquee-wrap {
+    overflow: hidden;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.116);
+    padding: 4rem 0;
+}
+
+.interests-marquee {
+    display: flex;
+    gap: 6rem;
+    width: max-content;
+    animation: marquee 25s linear infinite;
+}
+
+.interests-marquee:hover {
+    animation-play-state: paused;
+}
+
+.interest-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 700;
+    font-style: italic;
+    color: rgba(51, 34, 1, 0.836);
+    white-space: nowrap;
+    transition: color 0.4s, transform 0.4s;
+    cursor: pointer;
+}
+
+.interest-item:hover {
+    color: var(--gold);
+    transform: scale(1.05) translateY(-5px);
+}
+
+.interest-dot {
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.3;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.interest-item:hover .interest-dot {
+    opacity: 1;
+    transform: scale(1.2);
+}

@@ -1,24 +1,31 @@
-import React, { useState } from 'react';
-import Preloader from './Preloader';
-
-const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
-    return (
-        <span className="typewriter-text">
-            {text.split('').map((char, index) => (
-                <span
-                    key={index}
-                    className="type-char"
-                    style={{ animationDelay: `${delay + index * 0.05}s` }}
-                >
-                    {char === ' ' ? '\u00A0' : char}
-                </span>
-            ))}
-        </span>
-    );
-};
+import React, { useState, useEffect } from 'react';
+import Preloader from '../../molecules/Preloader/Preloader';
+import { TypewriterText } from '../../atoms/TypewriterText/TypewriterText';
+import './Hero.css';
 
 const Hero: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        if (!isLoading) {
+            const photo = document.querySelector('.hero-photo-wrap');
+            if (photo) {
+                const rect = photo.getBoundingClientRect();
+
+                const vh = window.innerHeight;
+
+                const middle = 0.5 * vh
+                const result = vh - rect.top
+                const oke = result + rect.top - middle - 220
+                const padding = rect.top - oke
+                const test = padding + oke
+                console.log("initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
+
+                document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
+            }
+        }
+
+    }, [isLoading]);
 
     return (
         <>

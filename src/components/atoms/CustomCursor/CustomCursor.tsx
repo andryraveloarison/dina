@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import './CustomCursor.css';
 
 const CustomCursor: React.FC = () => {
     const dotRef = useRef<HTMLDivElement>(null);
@@ -28,12 +29,12 @@ const CustomCursor: React.FC = () => {
         };
 
         const addHover = () => {
-            dotRef.current?.classList.add('cursor--hover');
-            ringRef.current?.classList.add('cursor-ring--hover');
+            dotRef.current?.classList.add('cursor-hover');
+            ringRef.current?.classList.add('cursor-ring-hover');
         };
         const removeHover = () => {
-            dotRef.current?.classList.remove('cursor--hover');
-            ringRef.current?.classList.remove('cursor-ring--hover');
+            dotRef.current?.classList.remove('cursor-hover');
+            ringRef.current?.classList.remove('cursor-ring-hover');
         };
 
         document.addEventListener('mousemove', onMove);

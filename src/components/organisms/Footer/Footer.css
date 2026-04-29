@@ -1,0 +1,51 @@
+/* FOOTER */
+.footer {
+    background: var(--bg3);
+    padding: 92px 64px;
+    text-align: center;
+}
+
+.footName {
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+.footTag {
+    font-size: 1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.footLinks {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.footLinks a {
+    color: rgba(253, 248, 243, 0.35);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footLinks a:hover {
+    color: var(--gold);
+}
+
+.footHr {
+    width: 20vw;
+    height: 1px;
+    background: rgba(184, 147, 106, 0.25);
+    margin: 20px auto 0;
+}
+
+
+@media (max-width: 900px) {
+    .footer {
+        padding: 60px 28px;
+    }
+}

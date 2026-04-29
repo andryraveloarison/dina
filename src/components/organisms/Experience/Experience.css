@@ -1,0 +1,89 @@
+/* EXPERIENCE */
+.experience {
+    background: var(--bg);
+}
+
+.exp-list {
+    margin-top: 5rem;
+}
+
+.exp-item {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 4rem;
+    padding: 4rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    transition: background 0.3s;
+    position: relative;
+}
+
+.exp-item::before {
+    content: '';
+    position: absolute;
+    left: -3rem;
+    right: -3rem;
+    top: 0;
+    bottom: 0;
+    background: rgba(201, 169, 110, 0.02);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.exp-item:hover::before {
+    opacity: 1;
+}
+
+.exp-date {
+    font-size: 1.2rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding-top: 0.8rem;
+    font-weight: 400;
+}
+
+.exp-company {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.exp-role {
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+}
+
+.exp-desc {
+    color: var(--muted);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+}
+
+.exp-desc li {
+    list-style: none;
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+}
+
+.exp-desc li::before {
+    content: '—';
+    position: absolute;
+    left: -0.5rem;
+    color: var(--gold);
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .exp-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

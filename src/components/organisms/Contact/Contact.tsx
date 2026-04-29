@@ -1,4 +1,6 @@
 import React from 'react';
+import './Contact.css';
+
 
 const Contact: React.FC = () => {
     return (
@@ -10,16 +12,16 @@ const Contact: React.FC = () => {
             </h2>
             <div className="contact-grid">
                 <div className="reveal">
-                    <p style={{ fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '1rem' }}>Email</p>
+                    <p className='contact-email-label'>Email</p>
                     <a href="mailto:dinafitiavana14@gmail.com" className="contact-email">
                         dinafitiavana14@gmail.com
                     </a>
-                    <p style={{ marginTop: '2rem', fontSize: '1rem', color: 'var(--muted)', lineHeight: '1.8' }}>
+                    <p className='contact-desc'>
                         Disponible pour des missions de conseil RH, recrutement<br />
                         et accompagnement en gestion des ressources humaines.<br />
                         <p className='contact-phone'>
                             <span style={{ color: 'var(--gold2)' }}>📞 </span>
-                            <span style={{ color: 'var(--gold2)' }}>034 39 616 81</span>
+                            <span style={{ color: 'var(--gold2)', marginTop: '2px' }}>034 39 616 81</span>
                         </p>
                     </p>
                 </div>
