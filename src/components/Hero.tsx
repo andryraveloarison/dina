@@ -1,6 +1,22 @@
 import React, { useState } from 'react';
 import Preloader from './Preloader';
 
+const TypewriterText = ({ text, delay = 0 }: { text: string, delay?: number }) => {
+    return (
+        <span className="typewriter-text">
+            {text.split('').map((char, index) => (
+                <span
+                    key={index}
+                    className="type-char"
+                    style={{ animationDelay: `${delay + index * 0.05}s` }}
+                >
+                    {char === ' ' ? '\u00A0' : char}
+                </span>
+            ))}
+        </span>
+    );
+};
+
 const Hero: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true);
 
@@ -16,9 +32,9 @@ const Hero: React.FC = () => {
                         <div className="hero-initials">DF</div>
                         <div className="hero-tag">HR Consultant · Madagascar</div>
                         <div className="hero-content">
-                            <h1 className="hero-name reveal reveal-delay-1">
-                                <em>Dina</em><br />
-                                Fitiavana
+                            <h1 className="hero-name">
+                                <em><TypewriterText text="Dina" delay={1.2} /></em><br />
+                                <TypewriterText text="Fitiavana" delay={1.7} />
                             </h1>
                             <p className="hero-subtitle">
                                 Une réelle passion pour les relations humaines et une curiosité incessante sur la manière de donner de l'importance à chaque personne.

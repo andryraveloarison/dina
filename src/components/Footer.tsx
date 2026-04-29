@@ -1,10 +1,11 @@
-import React from 'react';
 
 const Footer: React.FC = () => {
     return (
-        <footer>
-            <span>© 2024 Faneva Dina Fitiavana Botosoanirina</span>
-            <span>HR Consultant · Antananarivo, Madagascar</span>
+        <footer className="footer" id="contact">
+            <p className="section-title footName">Faneva Dina Fitiavana</p>
+            <p className="footTag">HR Consultant · Madagascar</p>
+            <span>© {new Date().getFullYear()}</span>
+            <div className="footHr"></div>
         </footer>
     );
 };

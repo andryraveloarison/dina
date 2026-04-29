@@ -1,13 +1,14 @@
 :root {
   --bg: #fcfaf7;
   --bg2: #f7f3ee;
-  --bg3: #eee9e1;
+  --bg3: #af634424;
   --cream: #1a1a18;
   --gold: #b38a3e;
   --gold2: #8c6a2f;
   --muted: #55554f;
   --text: #1a1a18;
   --accent: #b38a3e;
+  --font-serif: 'Cormorant Garamond', serif;
 }
 
 html {
@@ -402,7 +403,6 @@ nav.nav-visible {
   font-weight: 900;
   line-height: 0.9;
   color: var(--cream);
-  animation: slideUp 1s ease 1.2s both;
 }
 
 .hero-name em {
@@ -739,7 +739,7 @@ section {
 
 /* INTERESTS */
 .interests {
-  background: var(--bg2);
+  background: var(--bg3);
 }
 
 .interests-marquee-wrap {
@@ -870,24 +870,64 @@ section {
   color: var(--cream);
 }
 
+.contact-phone {
+  display: flex;
+  margin: 0;
+}
+
 .contact-link-arrow {
   font-size: 1rem;
 }
 
 /* FOOTER */
-footer {
-  background: var(--bg2);
-  padding: 2rem 3rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+.footer {
+  background: var(--bg3);
+  padding: 92px 64px;
+  text-align: center;
 }
 
-footer span {
-  font-size: 0.7rem;
-  color: var(--muted);
-  letter-spacing: 0.1em;
+.footName {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.footTag {
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.footLinks {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footLinks a {
+  color: rgba(253, 248, 243, 0.35);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footLinks a:hover {
+  color: var(--gold);
+}
+
+.footHr {
+  width: 20vw;
+  height: 1px;
+  background: rgba(184, 147, 106, 0.25);
+  margin: 20px auto 0;
+}
+
+@media (max-width: 900px) {
+  .footer {
+    padding: 60px 28px;
+  }
 }
 
 /* ANIMATIONS */
@@ -900,6 +940,18 @@ footer span {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+.type-char {
+  opacity: 0;
+  display: inline-block;
+  animation: typeChar 0.05s forwards;
+}
+
+@keyframes typeChar {
+  to {
+    opacity: 1;
   }
 }
 

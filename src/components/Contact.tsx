@@ -17,7 +17,10 @@ const Contact: React.FC = () => {
                     <p style={{ marginTop: '2rem', fontSize: '1rem', color: 'var(--muted)', lineHeight: '1.8' }}>
                         Disponible pour des missions de conseil RH, recrutement<br />
                         et accompagnement en gestion des ressources humaines.<br />
-                        <span style={{ color: 'var(--gold2)' }}>📞 034 39 616 81</span>
+                        <p className='contact-phone'>
+                            <span style={{ color: 'var(--gold2)' }}>📞 </span>
+                            <span style={{ color: 'var(--gold2)' }}>034 39 616 81</span>
+                        </p>
                     </p>
                 </div>
                 <div className="contact-links reveal reveal-delay-2">
@@ -25,8 +28,8 @@ const Contact: React.FC = () => {
                         <span>LinkedIn</span>
                         <span className="contact-link-arrow">↗</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/dina-fitiavana-9b807a24a/" className="contact-link" target="_blank" rel="noopener noreferrer">
-                        <span>@Dina Fitiavana</span>
+                    <a href="https://wa.me/0343961681" className="contact-link" target="_blank" rel="noopener noreferrer">
+                        <span>WhatsApp</span>
                         <span className="contact-link-arrow">↗</span>
                     </a>
                     <a href="mailto:dinafitiavana14@gmail.com" className="contact-link">
