@@ -56,7 +56,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
         const handleSequence = async () => {
 
 
-            await new Promise(r => setTimeout(r, 200));
+            await new Promise(r => setTimeout(r, 100));
 
 
             // 1. Monter le Hero EN PREMIER
@@ -69,7 +69,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
             setIsConverged(true);
 
             // 4. Attendre la fin de convergence puis cacher
-            await new Promise(r => setTimeout(r, 500));
+            await new Promise(r => setTimeout(r, 400));
             setIsHidden(true);
 
             await new Promise(r => setTimeout(r, 1000));

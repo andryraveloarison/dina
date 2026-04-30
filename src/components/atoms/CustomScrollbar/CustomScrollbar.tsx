@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import './CustomScrollbar.css';
 
 interface CustomScrollbarProps {
@@ -9,11 +9,11 @@ const CustomScrollbar: React.FC<CustomScrollbarProps> = ({ isLoading }) => {
     const [thumbHeight, setThumbHeight] = useState(0);
     const [thumbTop, setThumbTop] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
-    const scrollTimer = useRef<NodeJS.Timeout | null>(null);
+    const scrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null); // ← fix NodeJS.Timeout
 
-    const updateScrollbar = () => {
+    const updateScrollbar = useCallback(() => {
         const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-        
+
         if (scrollHeight <= clientHeight) {
             setThumbHeight(0);
             return;
@@ -26,34 +26,38 @@ const CustomScrollbar: React.FC<CustomScrollbarProps> = ({ isLoading }) => {
 
         setThumbHeight(height);
         setThumbTop(top);
-        
-        // Handle visibility
+
         setIsVisible(true);
         if (scrollTimer.current) clearTimeout(scrollTimer.current);
         scrollTimer.current = setTimeout(() => {
             setIsVisible(false);
         }, 1500);
-    };
+    }, []);
 
     useEffect(() => {
         window.addEventListener('scroll', updateScrollbar, { passive: true });
         window.addEventListener('resize', updateScrollbar);
-        updateScrollbar();
+
+        // ← fix "calling setState synchronously within an effect"
+        const raf = requestAnimationFrame(() => {
+            updateScrollbar();
+        });
 
         return () => {
             window.removeEventListener('scroll', updateScrollbar);
             window.removeEventListener('resize', updateScrollbar);
+            cancelAnimationFrame(raf);
             if (scrollTimer.current) clearTimeout(scrollTimer.current);
         };
-    }, []);
+    }, [updateScrollbar]);
 
     if (thumbHeight === 0 || isLoading) return null;
 
     return (
         <div className={`custom-scrollbar-track ${isVisible ? 'visible' : ''}`}>
-            <div 
+            <div
                 className="custom-scrollbar-thumb"
-                style={{ 
+                style={{
                     height: `${thumbHeight}px`,
                     transform: `translateY(${thumbTop}px)`
                 }}
