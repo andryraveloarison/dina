@@ -30,7 +30,7 @@ const About: React.FC = () => {
                         Je crois fermement que chaque individu mérite une attention singulière, et c'est ce fil conducteur qui guide chacune de mes missions de recrutement et d'accompagnement.
                     </p>
                     <p style={{ marginTop: '2rem', fontSize: '1.2rem', color: 'var(--gold2)', letterSpacing: '0.08em' }}>
-                        Chaque parcours est unique — ma mission est de le révéler pleinement
+                        Chaque parcours est unique, ma mission est de le révéler pleinement
                     </p>
                 </div>
             </div>

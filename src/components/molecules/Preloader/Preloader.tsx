@@ -12,11 +12,11 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     const [isReady, setIsReady] = useState(false);
 
     const images = [
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&q=80&w=1000',
+        '/photo2.jpeg',
+        '/photo3.jpeg',
+        '/photo1.jpeg',
+        '/photo2.jpeg',
+        '/photo3.jpeg',
     ];
 
     useEffect(() => {
@@ -74,7 +74,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
                             filter: i === 0 ? 'grayscale(100%) contrast(1.1)' :
                                 i === 1 ? 'grayscale(100%) brightness(1.3) contrast(0.85)' :
                                     i === 2 ? 'none' : // Center image is clear
-                                        i === 3 ? 'sepia(0.3) contrast(1.05)' :
+                                        i === 3 ? 'grayscale(100%) contrast(1.05)' :
                                             'grayscale(100%) brightness(0.7)',
                             zIndex: i === 2 ? 10 : 5
                         }}

@@ -73,7 +73,7 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
 
                         <div className="hero-photo-wrap">
                             <img
-                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000"
+                                src="/photo1.jpeg"
                                 alt="Dina Fitiavana"
                                 className="hero-photo"
                             />
