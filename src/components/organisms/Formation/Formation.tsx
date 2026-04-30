@@ -4,22 +4,22 @@ import './Formation.css';
 const Formation: React.FC = () => {
     const formations = [
         {
-            year: '2023',
-            degree: 'Master II en Gestion — MAE (Management et Administration d\'Entreprise)',
+            year: '2018 - 2023',
+            degree: 'Formation en Gestion - Management et Administration d\'Entreprise',
             school: 'Université Catholique de Madagascar',
-            note: 'Vice-major de promotion',
+            note: 'Une formation polyvalente en gestion orientée management et administration d\'entreprise. \n Master II : Mention Bien. Vice major de promotion.',
         },
         {
-            year: '2021',
-            degree: 'Licence en Gestion — MAE',
-            school: 'Université Catholique de Madagascar',
-            note: '',
+            year: '2021 - 2022',
+            degree: 'Formation en Langues Françaises',
+            school: 'Alliance Française Andavamamba',
+            note: 'Une formation suivie d\'une certification reconnue sur le plan national et international.',
         },
         {
-            year: '2018',
-            degree: 'Baccalauréat série A2',
+            year: '2015 - 2018',
+            degree: 'Collège Saint Michel Amparibe',
             school: 'Lycée Privé Saint Antoine',
-            note: '',
+            note: 'Enseignement général : BACC Littéraire Série A2 - Mention Bien',
         },
     ];
 

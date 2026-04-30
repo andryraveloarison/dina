@@ -3,8 +3,17 @@ import Preloader from '../../molecules/Preloader/Preloader';
 import { TypewriterText } from '../../atoms/TypewriterText/TypewriterText';
 import './Hero.css';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+    onLoadingComplete: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
     const [isLoading, setIsLoading] = useState(true);
+
+    const handleLoadingComplete = () => {
+        setIsLoading(false);
+        onLoadingComplete();
+    };
 
     useEffect(() => {
         if (!isLoading) {
@@ -29,7 +38,7 @@ const Hero: React.FC = () => {
 
     return (
         <>
-            <Preloader onLoadingComplete={() => setIsLoading(false)} />
+            <Preloader onLoadingComplete={handleLoadingComplete} />
             <section className="hero" id="home">
                 <div className="hero-bg"></div>
                 <div className="hero-noise"></div>

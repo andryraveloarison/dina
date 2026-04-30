@@ -1,0 +1,62 @@
+/* OTHER FORMATIONS */
+.other-formations {
+    background: var(--bg2);
+}
+
+.other-formations-list {
+    margin-top: 5rem;
+}
+
+.other-form-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.other-form-date {
+    font-size: 1.1rem;
+    color: var(--muted);
+    padding-top: 0.4rem;
+    font-weight: 400;
+}
+
+.other-form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+}
+
+.other-form-location {
+    font-size: 1.1rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.other-form-description {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+@media (max-width: 768px) {
+    .other-form-item {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 2rem 0;
+    }
+    
+    .other-form-date {
+        font-size: 1rem;
+    }
+    
+    .other-form-title {
+        font-size: 1.4rem;
+    }
+}

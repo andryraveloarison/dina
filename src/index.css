@@ -175,52 +175,16 @@ section {
   transition-delay: 0.50s;
 }
 
-/* === SCROLLBAR (PC ONLY) === */
-@media (min-width: 769px) {
-  html {
-    overflow-y: overlay;
-    scrollbar-width: none;
-    scrollbar-color: transparent transparent;
-  }
-
-  html.is-scrolling {
-    scrollbar-width: thin;
-    scrollbar-color: var(--gold) transparent;
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: 10px;
-  }
-
-  html.is-scrolling::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--gold), var(--accent));
-    border: 1px solid rgba(179, 138, 62, 0.3);
-  }
+/* === SCROLLBAR (HIDDEN TO PREVENT SHIFT) === */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
 }
 
-/* === SCROLLBAR (MOBILE) === */
-@media (max-width: 768px) {
-  html {
-    scrollbar-width: thin;
-    scrollbar-color: var(--gold) transparent;
-  }
-
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--gold);
-    border-radius: 10px;
-  }
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
+
 
 /* RESPONSIVE BASE */
 @media (max-width: 768px) {
