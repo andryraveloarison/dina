@@ -178,6 +178,7 @@ section {
 /* === SCROLLBAR GOLD (Chrome / Edge / Safari) === */
 ::-webkit-scrollbar {
   width: 5px;
+  overflow-y: hidden;
 }
 
 ::-webkit-scrollbar-track {
