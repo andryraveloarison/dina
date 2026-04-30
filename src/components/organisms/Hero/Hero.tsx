@@ -16,23 +16,22 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
     };
 
     useEffect(() => {
-        if (!isLoading) {
-            const photo = document.querySelector('.hero-photo-wrap');
-            if (photo) {
-                const rect = photo.getBoundingClientRect();
+        const photo = document.querySelector('.hero-photo-wrap');
+        if (photo) {
+            const rect = photo.getBoundingClientRect();
 
-                const vh = window.innerHeight;
+            const vh = window.innerHeight;
 
-                const middle = 0.5 * vh
-                const result = vh - rect.top
-                const oke = result + rect.top - middle - 220
-                const padding = rect.top - oke
-                const test = padding + oke
-                console.log("initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
+            const middle = 0.5 * vh
+            const result = vh - rect.top
+            const oke = result + rect.top - middle - 220
+            const padding = rect.top - oke
+            const test = padding + oke
+            console.log("initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
 
-                document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
-            }
+            //document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
         }
+
 
     }, [isLoading]);
 

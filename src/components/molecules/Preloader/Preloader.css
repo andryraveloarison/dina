@@ -40,7 +40,6 @@
 #preloader.hidden .pre-img-track {
     opacity: 0;
     transition: opacity 0s;
-    /* Hide instantly to let Hero image take over */
 }
 
 /* ── SCROLL REVEAL — generic ── */
@@ -56,9 +55,8 @@
     top: 1.5rem;
     left: 1.5rem;
     font-size: 1.3rem;
-    letter-spacing: 0.15em;
-    color: var(--bg);
     letter-spacing: 0.1px;
+    color: var(--bg);
     z-index: 2;
     transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
 }
@@ -77,33 +75,31 @@
     height: 100%;
     object-fit: cover;
     border-radius: 4px;
-
     transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1),
         opacity 1.5s ease;
 }
 
-/* Tout commence hors écran */
-
+/* ── ÉTATS INITIAUX (hors écran) ── */
 .pre-img-side-0,
 .pre-img-side-4 {
     transform: translateY(-200%) scale(0.8);
-    /* viennent du haut */
-    opacity: 1
+    opacity: 1;
 }
 
 .pre-img-side-1,
 .pre-img-side-3 {
     transform: translateY(200%) scale(0.9);
-    /* viennent du bas */
-    opacity: 1
+    opacity: 1;
 }
 
 .pre-img-side-2 {
-    transform: translateY(100%) scale(1);
-    /* reste au centre */
-    opacity: 1
+    transform: translateY(0) scale(1);
+    /* ← centré dès le départ, pas translateY(100%) */
+    opacity: 0;
+    /* ← invisible jusqu'à is-ready */
 }
 
+/* ── IS-READY : déploiement des images ── */
 .is-ready .pre-img-side-0 {
     transform: translateX(-250%) scale(0.8);
     opacity: 1;
@@ -118,7 +114,8 @@
 
 .is-ready .pre-img-side-2 {
     transform: translateX(0) scale(1);
-    opacity: 1
+    opacity: 1;
+    transition-delay: 0s;
 }
 
 .is-ready .pre-img-side-3 {
@@ -133,6 +130,7 @@
     transition-delay: 0.8s;
 }
 
+/* ── IS-CONVERGED : tout revient au centre et disparaît ── */
 .is-converged .pre-img-side-0 {
     transform: translateX(0) scale(1);
     opacity: 0;
@@ -149,7 +147,6 @@
     transform: translateX(0) scale(1);
     opacity: 0;
     transition-delay: 0.8s;
-
 }
 
 .is-converged .pre-img-side-3 {
@@ -175,17 +172,17 @@
     transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1), opacity 1s ease;
 }
 
-
-
-
+/* ── MOBILE > 768px et ≤ 1037px ── */
 @media (max-width: 1037px) {
     .is-converged .pre-img-side-2 {
         opacity: 0;
         transform: scale(1);
         transition-delay: 0s;
+        /* disparaît immédiatement pour laisser le Hero prendre le relais */
     }
 }
 
+/* ── MOBILE ≤ 768px ── */
 @media (max-width: 768px) {
 
     .pre-img-side-0,
@@ -193,13 +190,23 @@
     .pre-img-side-3,
     .pre-img-side-4 {
         display: none !important;
+    }
+
+    .pre-img-side-2 {
+        transform: translateY(0) scale(1);
         opacity: 0;
+    }
+
+    .is-ready .pre-img-side-2 {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition-delay: 0s;
     }
 
     .is-converged .pre-img-side-2 {
         opacity: 0;
         transform: scale(1);
-        transition-delay: 0.8s;
+        transition-delay: 0s;
+        /* pas de délai : disparaît dès que Hero est prêt */
     }
-
 }

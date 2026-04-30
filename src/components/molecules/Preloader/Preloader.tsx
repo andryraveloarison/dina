@@ -36,18 +36,41 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
             });
         }, 35);
 
+        const photo = document.querySelector('.hero-photo-wrap');
+        if (photo) {
+            const rect = photo.getBoundingClientRect();
+
+            const vh = window.innerHeight;
+
+            const middle = 0.5 * vh
+            const result = vh - rect.top
+            const oke = result + rect.top - middle - 220
+            const padding = rect.top - oke
+            const test = padding + oke
+            console.log("**** initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
+
+            document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
+        }
+
+
         const handleSequence = async () => {
+
 
             await new Promise(r => setTimeout(r, 200));
 
-            // Step 1: Converge images to center
+
+            // 1. Monter le Hero EN PREMIER
+            onLoadingComplete();
+
+            // 2. Attendre que le Hero soit monté et layouté
+            await new Promise(r => setTimeout(r, 200));
+
+            // 3. Seulement après, converger le preloader
             setIsConverged(true);
 
-            // Wait for convergence to finish
-            await new Promise(r => setTimeout(r, 900));
-
+            // 4. Attendre la fin de convergence puis cacher
+            await new Promise(r => setTimeout(r, 500));
             setIsHidden(true);
-            onLoadingComplete();
 
             await new Promise(r => setTimeout(r, 1000));
             document.body.style.overflow = '';
