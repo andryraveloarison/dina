@@ -28,15 +28,30 @@ const Contact: React.FC = () => {
                 <div className="contact-links reveal reveal-delay-2">
                     <a href="https://www.linkedin.com/in/dina-fitiavana-9b807a24a/" className="contact-link" target="_blank" rel="noopener noreferrer">
                         <span>LinkedIn</span>
-                        <span className="contact-link-arrow">↗</span>
+                        <span className="contact-link-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
                     </a>
                     <a href="https://wa.me/0343961681" className="contact-link" target="_blank" rel="noopener noreferrer">
                         <span>WhatsApp</span>
-                        <span className="contact-link-arrow">↗</span>
+                        <span className="contact-link-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
                     </a>
                     <a href="mailto:dinafitiavana14@gmail.com" className="contact-link">
                         <span>Email direct</span>
-                        <span className="contact-link-arrow">↗</span>
+                        <span className="contact-link-arrow">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </span>
                     </a>
                 </div>
             </div>

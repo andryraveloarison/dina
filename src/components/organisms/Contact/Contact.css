@@ -73,7 +73,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9;
+    font-size: 0.9rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
@@ -93,7 +93,18 @@
 }
 
 .contact-link-arrow {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: var(--muted);
+    transition: transform 0.3s ease, color 0.3s;
+}
+
+.contact-link:hover .contact-link-arrow {
+    transform: translate(2px, -2px);
+    color: var(--gold);
 }
 
 @media (max-width: 768px) {
