@@ -50,3 +50,9 @@ nav.nav-visible {
     color: var(--cream);
     font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+}
