@@ -219,7 +219,7 @@
         height: 440px;
         margin: 0 auto;
         position: relative;
-        animation: photoMoveDown 2s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
+        animation: photoMoveDown 5s cubic-bezier(0.22, 1, 0.36, 1) 0s both;
     }
 
 

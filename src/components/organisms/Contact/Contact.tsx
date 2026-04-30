@@ -35,8 +35,7 @@ const Contact: React.FC = () => {
                             </svg>
                         </span>
                     </a>
-                    <a href="https://wa.me/0343961681" className="contact-link" target="_blank" rel="noopener noreferrer">
-                        <span>WhatsApp</span>
+                    <a href="https://wa.me/261343961681" target="_blank" rel="noopener noreferrer" className="contact-link">                        <span>WhatsApp</span>
                         <span className="contact-link-arrow">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <line x1="7" y1="17" x2="17" y2="7"></line>
