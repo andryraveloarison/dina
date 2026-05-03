@@ -83,13 +83,13 @@
 .pre-img-side-0,
 .pre-img-side-4 {
     transform: translateY(-200%) scale(0.8);
-    opacity: 1;
+    opacity: 0;
 }
 
 .pre-img-side-1,
 .pre-img-side-3 {
     transform: translateY(200%) scale(0.9);
-    opacity: 1;
+    opacity: 0;
 }
 
 .pre-img-side-2 {
@@ -102,31 +102,31 @@
 /* ── IS-READY : déploiement des images ── */
 .is-ready .pre-img-side-0 {
     transform: translateX(-250%) scale(0.8);
-    opacity: 1;
+    opacity: 0;
     transition-delay: 0.2s;
 }
 
 .is-ready .pre-img-side-1 {
     transform: translateX(-125%) scale(0.9);
-    opacity: 1;
+    opacity: 0;
     transition-delay: 0.4s;
 }
 
 .is-ready .pre-img-side-2 {
     transform: translateX(0) scale(1);
-    opacity: 1;
+    opacity: 0;
     transition-delay: 0s;
 }
 
 .is-ready .pre-img-side-3 {
     transform: translateX(125%) scale(0.9);
-    opacity: 1;
+    opacity: 0;
     transition-delay: 0.6s;
 }
 
 .is-ready .pre-img-side-4 {
     transform: translateX(250%) scale(0.8);
-    opacity: 1;
+    opacity: 0;
     transition-delay: 0.8s;
 }
 
@@ -198,7 +198,7 @@
     }
 
     .is-ready .pre-img-side-2 {
-        opacity: 1;
+        opacity: 0;
         transform: translateY(0) scale(1);
         transition-delay: 0s;
     }
