@@ -20,11 +20,39 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     ];
 
     useEffect(() => {
-
-
         document.body.style.overflow = 'hidden';
+
+        const handleSequence = async () => {
+            await new Promise(r => setTimeout(r, 100));
+
+            // Capturer la position de pre-img-side-2 AVANT que le Hero monte
+            if (window.innerWidth <= 1037) {
+                const preImg = document.querySelector('.pre-img-side-2') as HTMLElement;
+                if (preImg) {
+                    void preImg.offsetHeight; // force reflow
+                    (window as any).__preloaderImgTop = preImg.getBoundingClientRect().top;
+                }
+            }
+
+            // Monter le Hero (isLoading → false).
+            // Hero.tsx va rendre hero-photo-wrap avec opacity:0 (classe --hidden),
+            // attendre ResizeObserver, puis retirer --hidden ET animer atomiquement.
+            onLoadingComplete();
+
+            // Attendre que Hero ait eu le temps de calculer et démarrer l'animation
+            // avant de converger le preloader par-dessus
+            await new Promise(r => setTimeout(r, 500));
+            setIsConverged(true);
+
+            await new Promise(r => setTimeout(r, 200));
+            setIsHidden(true);
+
+            await new Promise(r => setTimeout(r, 1000));
+            document.body.style.overflow = '';
+        };
+
         const progressInterval = setInterval(() => {
-            setIsReady(true)
+            setIsReady(true);
             setProgress((prev) => {
                 const next = prev + 1.2;
                 if (next >= 100) {
@@ -36,46 +64,6 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
             });
         }, 35);
 
-        const photo = document.querySelector('.hero-photo-wrap');
-        if (photo) {
-            const rect = photo.getBoundingClientRect();
-
-            const vh = window.innerHeight;
-
-            const middle = 0.5 * vh
-            const result = vh - rect.top
-            const oke = result + rect.top - middle - 220
-            const padding = rect.top - oke
-            const test = padding + oke
-            console.log("**** initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
-
-            document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
-        }
-
-
-        const handleSequence = async () => {
-
-
-            await new Promise(r => setTimeout(r, 100));
-
-
-            // 1. Monter le Hero EN PREMIER
-            onLoadingComplete();
-
-            // 2. Attendre que le Hero soit monté et layouté
-            await new Promise(r => setTimeout(r, 200));
-
-            // 3. Seulement après, converger le preloader
-            setIsConverged(true);
-
-            // 4. Attendre la fin de convergence puis cacher
-            await new Promise(r => setTimeout(r, 400));
-            setIsHidden(true);
-
-            await new Promise(r => setTimeout(r, 1000));
-            document.body.style.overflow = '';
-        };
-
         return () => {
             clearInterval(progressInterval);
             document.body.style.overflow = '';
@@ -83,11 +71,11 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     }, [onLoadingComplete]);
 
     return (
-        <div id="preloader" className={`${isHidden ? 'hidden' : ''} ${isConverged ? 'is-converged' : ''}  `}>
+        <div id="preloader" className={`${isHidden ? 'hidden' : ''} ${isConverged ? 'is-converged' : ''}`}>
             <div className="pre-bg"></div>
             <div className="pre-name">Dina Fitiavana</div>
 
-            <div className={`pre-img-track ${isReady ? 'is-ready' : ''} `}>
+            <div className={`pre-img-track ${isReady ? 'is-ready' : ''}`}>
                 {[0, 1, 2, 3, 4].map((i) => (
                     <img
                         key={i}
@@ -96,7 +84,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
                         style={{
                             filter: i === 0 ? 'grayscale(100%) contrast(1.1)' :
                                 i === 1 ? 'grayscale(100%) brightness(1.3) contrast(0.85)' :
-                                    i === 2 ? 'none' : // Center image is clear
+                                    i === 2 ? 'none' :
                                         i === 3 ? 'grayscale(100%) contrast(1.05)' :
                                             'grayscale(100%) brightness(0.7)',
                             zIndex: i === 2 ? 10 : 5

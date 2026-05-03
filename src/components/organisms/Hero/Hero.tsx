@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Preloader from '../../molecules/Preloader/Preloader';
 import { TypewriterText } from '../../atoms/TypewriterText/TypewriterText';
 import './Hero.css';
@@ -9,6 +9,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
     const [isLoading, setIsLoading] = useState(true);
+    const photoRef = useRef<HTMLDivElement>(null);
 
     const handleLoadingComplete = () => {
         setIsLoading(false);
@@ -16,22 +17,51 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
     };
 
     useEffect(() => {
-        const photo = document.querySelector('.hero-photo-wrap');
-        if (photo) {
-            const rect = photo.getBoundingClientRect();
+        if (isLoading) return;
+        if (window.innerWidth > 1037) return;
 
-            const vh = window.innerHeight;
+        const wrap = photoRef.current;
+        if (!wrap) return;
 
-            const middle = 0.5 * vh
-            const result = vh - rect.top
-            const oke = result + rect.top - middle - 220
-            const padding = rect.top - oke
-            const test = padding + oke
-            console.log("initial: " + rect.top + "padding: " + padding, "oke : " + oke + "test: " + test)
+        const preImgTop = (window as any).__preloaderImgTop as number | undefined;
+        if (preImgTop === undefined) return;
+        delete (window as any).__preloaderImgTop;
 
-            //document.documentElement.style.setProperty('--hero-photo-top', `${-padding}px`);
-        }
+        const vw = window.innerWidth;
+        const finalWidth = vw <= 507 ? '90%' : vw <= 814 ? '60%' : '320px';
 
+        // Attendre que le layout soit stable (2 frames)
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                void wrap.offsetHeight; // force reflow
+
+                const heroRect = wrap.getBoundingClientRect();
+                const delta = preImgTop - heroRect.top;
+
+                // 1. Repositionner l'image à la position du preloader (encore invisible)
+                wrap.style.transform = `translateY(${delta}px)`;
+                wrap.style.width = '320px';
+                wrap.style.height = '440px';
+                wrap.style.borderRadius = '4px';
+
+                // 2. Forcer le browser à peindre ce translateY avant de rendre visible
+                void wrap.offsetHeight;
+
+                // 3. Maintenant rendre visible — l'image apparaît déjà à la bonne position
+                wrap.style.opacity = '1';
+
+                // 4. Activer la transition CSS puis animer vers la position finale
+                wrap.classList.add('hero-photo-wrap--animating');
+
+                // Un frame pour que la transition CSS soit active
+                requestAnimationFrame(() => {
+                    wrap.style.transform = 'translateY(0px)';
+                    wrap.style.width = finalWidth;
+                    wrap.style.height = '440px';
+                    wrap.style.borderRadius = '20px';
+                });
+            });
+        });
 
     }, [isLoading]);
 
@@ -70,7 +100,10 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
                             </div>
                         </div>
 
-                        <div className="hero-photo-wrap">
+                        <div
+                            className="hero-photo-wrap hero-photo-wrap--mobile-init"
+                            ref={photoRef}
+                        >
                             <img
                                 src="/photo1.jpeg"
                                 alt="Dina Fitiavana"
