@@ -44,7 +44,7 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
             await new Promise(r => setTimeout(r, 500));
             setIsConverged(true);
 
-            await new Promise(r => setTimeout(r, 200));
+            await new Promise(r => setTimeout(r, 400));
             setIsHidden(true);
 
             await new Promise(r => setTimeout(r, 1000));

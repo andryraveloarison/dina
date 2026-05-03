@@ -32,7 +32,7 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
 
         // Attendre que le layout soit stable (2 frames)
         requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
+            requestAnimationFrame(async () => {
                 void wrap.offsetHeight; // force reflow
 
                 const heroRect = wrap.getBoundingClientRect();
@@ -49,6 +49,8 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
 
                 // 3. Maintenant rendre visible — l'image apparaît déjà à la bonne position
                 wrap.style.opacity = '1';
+
+                await new Promise(r => setTimeout(r, 800));
 
                 // 4. Activer la transition CSS puis animer vers la position finale
                 wrap.classList.add('hero-photo-wrap--animating');
