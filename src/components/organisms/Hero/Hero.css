@@ -228,22 +228,11 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 
-    /*
-     * État initial sur mobile :
-     * - opacity: 0  → invisible, jamais visible à sa position naturelle
-     * - pas de transition → le repositionnement JS est instantané et silencieux
-     */
     .hero-photo-wrap--mobile-init {
         opacity: 0;
         transition: none;
     }
 
-    /*
-     * Dès que JS a repositionné l'élément (translateY vers position preloader),
-     * il ajoute cette classe pour activer la transition CSS.
-     * Puis il change transform → translateY(0) pour lancer l'animation vers le haut.
-     * L'opacity passe à 1 en même temps que le repositionnement, avant la transition.
-     */
     .hero-photo-wrap--animating {
         transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1),
             width 1.5s cubic-bezier(0.77, 0, 0.175, 1),

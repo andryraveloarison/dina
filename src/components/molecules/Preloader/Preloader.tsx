@@ -25,22 +25,21 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
         const handleSequence = async () => {
             await new Promise(r => setTimeout(r, 100));
 
-            // Capturer la position de pre-img-side-2 AVANT que le Hero monte
             if (window.innerWidth <= 1037) {
-                const preImg = document.querySelector('.pre-img-side-2') as HTMLElement;
-                if (preImg) {
-                    void preImg.offsetHeight; // force reflow
-                    (window as any).__preloaderImgTop = preImg.getBoundingClientRect().top;
+                // Capturer le CONTAINER .pre-img-track, pas l'<img> à l'intérieur.
+                // C'est lui qui définit la taille visuelle réelle affichée à l'écran.
+                const track = document.querySelector('.pre-img-track') as HTMLElement;
+                if (track) {
+                    void track.offsetHeight;
+                    const rect = track.getBoundingClientRect();
+                    (window as any).__preloaderImgTop = rect.top;
+                    (window as any).__preloaderImgWidth = rect.width;
+                    (window as any).__preloaderImgHeight = rect.height;
                 }
             }
 
-            // Monter le Hero (isLoading → false).
-            // Hero.tsx va rendre hero-photo-wrap avec opacity:0 (classe --hidden),
-            // attendre ResizeObserver, puis retirer --hidden ET animer atomiquement.
             onLoadingComplete();
 
-            // Attendre que Hero ait eu le temps de calculer et démarrer l'animation
-            // avant de converger le preloader par-dessus
             await new Promise(r => setTimeout(r, 500));
             setIsConverged(true);
 

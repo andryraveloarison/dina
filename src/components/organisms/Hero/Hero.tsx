@@ -24,38 +24,46 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
         if (!wrap) return;
 
         const preImgTop = (window as any).__preloaderImgTop as number | undefined;
+        const preImgWidth = (window as any).__preloaderImgWidth as number | undefined;
+        const preImgHeight = (window as any).__preloaderImgHeight as number | undefined;
+
         if (preImgTop === undefined) return;
+
         delete (window as any).__preloaderImgTop;
+        delete (window as any).__preloaderImgWidth;
+        delete (window as any).__preloaderImgHeight;
+
+        // Taille de départ = exactement celle du container preloader visible
+        const startWidth = `${preImgWidth ?? 320}px`;
+        const startHeight = `${preImgHeight ?? 440}px`;
 
         const vw = window.innerWidth;
         const finalWidth = vw <= 507 ? '90%' : vw <= 814 ? '60%' : '320px';
 
-        // Attendre que le layout soit stable (2 frames)
         requestAnimationFrame(() => {
             requestAnimationFrame(async () => {
-                void wrap.offsetHeight; // force reflow
+                void wrap.offsetHeight;
 
                 const heroRect = wrap.getBoundingClientRect();
                 const delta = preImgTop - heroRect.top;
 
-                // 1. Repositionner l'image à la position du preloader (encore invisible)
+                // 1. Repositionner silencieusement à la position + taille exacte du preloader
                 wrap.style.transform = `translateY(${delta}px)`;
-                wrap.style.width = '320px';
-                wrap.style.height = '440px';
+                wrap.style.width = startWidth;
+                wrap.style.height = startHeight;
                 wrap.style.borderRadius = '4px';
 
-                // 2. Forcer le browser à peindre ce translateY avant de rendre visible
+                // 2. Forcer le paint avant de rendre visible
                 void wrap.offsetHeight;
 
-                // 3. Maintenant rendre visible — l'image apparaît déjà à la bonne position
+                // 3. Rendre visible — déjà à la bonne position et taille
                 wrap.style.opacity = '1';
 
                 await new Promise(r => setTimeout(r, 800));
 
-                // 4. Activer la transition CSS puis animer vers la position finale
+                // 4. Activer la transition puis animer vers la position finale
                 wrap.classList.add('hero-photo-wrap--animating');
 
-                // Un frame pour que la transition CSS soit active
                 requestAnimationFrame(() => {
                     wrap.style.transform = 'translateY(0px)';
                     wrap.style.width = finalWidth;
