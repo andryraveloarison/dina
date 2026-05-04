@@ -93,8 +93,8 @@
 }
 
 .pre-img-side-2 {
-    transform: translateY(0) scale(1);
-    /* ← centré dès le départ, pas translateY(100%) */
+    transform: translateY(200%) scale(1);
+    /* ← vient d'en bas */
     opacity: 0;
     /* ← invisible jusqu'à is-ready */
 }
@@ -193,7 +193,7 @@
     }
 
     .pre-img-side-2 {
-        transform: translateY(0) scale(1);
+        transform: translateY(200%) scale(1);
         opacity: 0;
     }
 
