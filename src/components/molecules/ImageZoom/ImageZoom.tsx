@@ -39,7 +39,7 @@ const ImageZoom: React.FC = () => {
         <div className="iz-container" ref={containerRef}>
             <div className="iz-sticky">
                 <div className="iz-img-wrap" ref={imgWrapRef}>
-                    <img src="/dina.png" alt="Dina Fitiavana" className="iz-img" />
+                    <img src="/couverture1.jpeg" alt="Dina Fitiavana" className="iz-img" />
                 </div>
                 <p className="iz-label">Dina Fitiavana</p>
             </div>

@@ -7,6 +7,13 @@ interface HeroProps {
     onLoadingComplete: () => void;
 }
 
+// Typage explicite de window pour éviter @typescript-eslint/no-explicit-any
+interface PreloaderWindow extends Window {
+    __preloaderImgTop?: number;
+}
+
+declare const window: PreloaderWindow;
+
 const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
     const [isLoading, setIsLoading] = useState(true);
     const photoRef = useRef<HTMLDivElement>(null);
@@ -23,22 +30,16 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
         const wrap = photoRef.current;
         if (!wrap) return;
 
-        const preImgTop = (window as any).__preloaderImgTop as number | undefined;
-        const preImgWidth = (window as any).__preloaderImgWidth as number | undefined;
-        const preImgHeight = (window as any).__preloaderImgHeight as number | undefined;
-
+        const preImgTop = window.__preloaderImgTop;
         if (preImgTop === undefined) return;
 
-        delete (window as any).__preloaderImgTop;
-        delete (window as any).__preloaderImgWidth;
-        delete (window as any).__preloaderImgHeight;
-
-        // Taille de départ = exactement celle du container preloader visible
-        const startWidth = `${preImgWidth ?? 320}px`;
-        const startHeight = `${preImgHeight ?? 440}px`;
+        delete window.__preloaderImgTop;
 
         const vw = window.innerWidth;
         const finalWidth = vw <= 507 ? '90%' : vw <= 814 ? '60%' : '320px';
+
+        // Taille de départ hardcodée = exactement les valeurs CSS de .pre-img-track
+        const START_W = '320px';
 
         requestAnimationFrame(() => {
             requestAnimationFrame(async () => {
@@ -47,27 +48,24 @@ const Hero: React.FC<HeroProps> = ({ onLoadingComplete }) => {
                 const heroRect = wrap.getBoundingClientRect();
                 const delta = preImgTop - heroRect.top;
 
-                // 1. Repositionner silencieusement à la position + taille exacte du preloader
+                // 1. Repositionner silencieusement à la position du preloader
                 wrap.style.transform = `translateY(${delta}px)`;
-                wrap.style.width = startWidth;
-                wrap.style.height = startHeight;
+                wrap.style.width = START_W;
                 wrap.style.borderRadius = '4px';
 
-                // 2. Forcer le paint avant de rendre visible
                 void wrap.offsetHeight;
 
-                // 3. Rendre visible — déjà à la bonne position et taille
+                // 2. Rendre visible (le preloader est encore par-dessus, z-index: 20)
                 wrap.style.opacity = '1';
 
-                await new Promise(r => setTimeout(r, 800));
+                // 3. Démarrer immédiatement l'animation sous le preloader
+                await new Promise(r => setTimeout(r, 50));
 
-                // 4. Activer la transition puis animer vers la position finale
                 wrap.classList.add('hero-photo-wrap--animating');
 
                 requestAnimationFrame(() => {
                     wrap.style.transform = 'translateY(0px)';
                     wrap.style.width = finalWidth;
-                    wrap.style.height = '440px';
                     wrap.style.borderRadius = '20px';
                 });
             });

@@ -5,6 +5,13 @@ interface PreloaderProps {
     onLoadingComplete: () => void;
 }
 
+// Typage explicite de window pour éviter @typescript-eslint/no-explicit-any
+interface PreloaderWindow extends Window {
+    __preloaderImgTop?: number;
+}
+
+declare const window: PreloaderWindow;
+
 const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
     const [progress, setProgress] = useState(0);
     const [isConverged, setIsConverged] = useState(false);
@@ -26,24 +33,29 @@ const Preloader: React.FC<PreloaderProps> = ({ onLoadingComplete }) => {
             await new Promise(r => setTimeout(r, 100));
 
             if (window.innerWidth <= 1037) {
-                // Capturer le CONTAINER .pre-img-track, pas l'<img> à l'intérieur.
-                // C'est lui qui définit la taille visuelle réelle affichée à l'écran.
                 const track = document.querySelector('.pre-img-track') as HTMLElement;
                 if (track) {
                     void track.offsetHeight;
-                    const rect = track.getBoundingClientRect();
-                    (window as any).__preloaderImgTop = rect.top;
-                    (window as any).__preloaderImgWidth = rect.width;
-                    (window as any).__preloaderImgHeight = rect.height;
+                    window.__preloaderImgTop = track.getBoundingClientRect().top;
                 }
             }
 
+            // Monter le Hero
             onLoadingComplete();
 
-            await new Promise(r => setTimeout(r, 500));
+            // Attendre que l'animation Hero soit terminée avant de converger :
+            // 50ms (délai JS) + 1500ms (transition CSS) + 100ms marge = ~1700ms
+            // Le preloader reste visible pendant toute l'animation Hero —
+            // les deux images ne sont jamais comparables visuellement.
+            if (window.innerWidth <= 1037) {
+                await new Promise(r => setTimeout(r, 0));
+            } else {
+                await new Promise(r => setTimeout(r, 350));
+            }
+
             setIsConverged(true);
 
-            await new Promise(r => setTimeout(r, 400));
+            await new Promise(r => setTimeout(r, 250));
             setIsHidden(true);
 
             await new Promise(r => setTimeout(r, 1000));
