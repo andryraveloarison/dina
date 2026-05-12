@@ -28,7 +28,7 @@ const App: React.FC = () => {
       <Hero onLoadingComplete={() => setIsLoading(false)} />
       <About />
       <Experience />
-      <ImageZoom />
+      {/* <ImageZoom /> */}
       <Skills />
       <Formation />
       <OtherFormations />
