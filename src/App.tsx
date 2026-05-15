@@ -12,7 +12,7 @@ import CustomCursor from './components/atoms/CustomCursor/CustomCursor';
 import CustomScrollbar from './components/atoms/CustomScrollbar/CustomScrollbar';
 import { useReveal } from './hooks/useReveal';
 import { useTitleReveal } from './hooks/useTitleReveal';
-import ImageZoom from './components/molecules/ImageZoom/ImageZoom';
+//import ImageZoom from './components/molecules/ImageZoom/ImageZoom';
 import { useState } from 'react';
 
 const App: React.FC = () => {
