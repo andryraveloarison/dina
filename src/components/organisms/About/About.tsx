@@ -24,13 +24,13 @@ const About: React.FC = () => {
                         Diplômée en Gestion — Management et Administration d'Entreprise de l'Université Catholique de Madagascar (Master II, Vice-major de promotion), je me suis spécialisée dans les ressources humaines avec une passion profonde pour le recrutement et le développement des talents.
                     </p>
                     <p>
-                        Mon parcours m'a menée du terrain associatif — chef d'équipe des Éclaireuses, responsable RH d'un groupe artistique — jusqu'aux environnements corporate exigeants, en passant par plusieurs années d'expérience chez Vivetic Group et aujourd'hui FTHM Consulting.
+                        Mon parcours m'a menée du terrain associatif — chef d'équipe des Éclaireuses, responsable RH d'un groupe artistique — jusqu'aux environnements corporate exigeants, en passant par Vivetic Group, une société d'externalisation de la relation client à Madagascar, et aujourd'hui FTHM Consulting, un cabinet de conseil en stratégie et management.
                     </p>
                     <p>
                         Je crois fermement que chaque individu mérite une attention singulière, et c'est ce fil conducteur qui guide chacune de mes missions de recrutement et d'accompagnement.
                     </p>
                     <p style={{ marginTop: '2rem', fontSize: '1.2rem', color: 'var(--gold2)', letterSpacing: '0.08em' }}>
-                        Chaque parcours est unique, ma mission est de le révéler pleinement
+                        Chaque parcours est unique, ma mission est de le révéler pleinement.
                     </p>
                 </div>
             </div>
